@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}Stock Market Calculator</title>
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/mobile.css') }}">
+</head>
+
+<body>
+    <!-- Header and navbar starts -->
+    <nav class="smc-navbar navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Site logo Section -->
+            <img class="smc-logo" src="{{ url_for('static',filename='images/logo.svg') }}"
+                alt="Stock Market Calculator">
+            <div class="d-flex flex-column bd-highlight mb-auto">
+                <div class="pt-3 bd-highlight">
+                    <a class="smc-logo-text navbar-brand" href="{{ url_for('home') }}">Stock
+                        Market Calculator</a>
+                </div>
+                <div class="pt-1 bd-highlight">
+                    <span class="smc-site-desc">LEARN | CALCULATE | INVEST</span>
+                </div>
+            </div>
+            <!-- Toggle menu button -->
+            <button class="smc-toggler navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Menu">
+                <i class="ri-menu-5-line"></i>
+            </button>
+
+            <!-- Navbar items -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="smc-navbar-nav navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('pagesmodule.about') }}"><i
+                                class="nav-icon ri-user-line"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('pagesmodule.contact') }}"><i
+                                class="nav-icon ri-mail-send-line"></i>Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('pagesmodule.helps') }}"><i
+                                class="nav-icon ri-question-line"></i>Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- Light/Dark mode toggle checkbox -->
+                        <label id="switch" class="switch">
+                            <input type="checkbox" onchange="toggleTheme()" id="slider">
+                            <span class="slider round"></span>
+                        </label>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- Header and navbar ends -->
+
+    <!-- Home page main content starts -->
+    {% block maincontent%}
+    {% endblock %}
+    <!-- Home page main content ends-->
+
+    <!-- Javascript library files -->
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+</body>
+
+</html>

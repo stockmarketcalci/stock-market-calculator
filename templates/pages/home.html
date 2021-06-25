@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% block title %}{% endblock %}
+{% block maincontent %}
+<div class="container smc-main-section">
+    <div class="row">
+        {% if cardList1 %}
+        {% for card in cardList1 %}
+        <div class="col">
+            <div class="smc-card d-flex align-items-start">
+                <img class="smc-card-img" src="{{card['image']}}" alt="{{card['title']}}">
+                <div class="d-flex flex-column bd-highlight mb-auto">
+                    <div class="bd-highlight">
+                        <a class="smc-card-title" href="{{card['onclick']}}">{{card['title']}}</a>
+                    </div>
+                    <div class="bd-highlight">
+                        <span class="smc-card-desc">{{ card['desc'] }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if cardList2 %}
+        {% for card in cardList2 %}
+        <div class="col">
+            <div class="smc-card d-flex align-items-start">
+                <img class="smc-card-img" src="{{card['image']}}" alt="{{card['title']}}">
+                <div class="d-flex flex-column bd-highlight mb-auto">
+                    <div class="bd-highlight">
+                        <a class="smc-card-title" href="{{card['onclick']}}">{{card['title']}}</a>
+                    </div>
+                    <div class="bd-highlight">
+                        <span class="smc-card-desc">{{ card['desc'] }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if cardList3 %}
+        {% for card in cardList3 %}
+        <div class="col">
+            <div class="smc-card d-flex align-items-start">
+                <img class="smc-card-img" src="{{card['image']}}" alt="{{card['title']}}">
+                <div class="d-flex flex-column bd-highlight mb-auto">
+                    <div class="bd-highlight">
+                        <a class="smc-card-title" href="{{card['onclick']}}">{{card['title']}}</a>
+                    </div>
+                    <div class="bd-highlight">
+                        <span class="smc-card-desc">{{ card['desc'] }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    <div class="row">
+        {% if cardList4 %}
+        {% for card in cardList4 %}
+        <div class="col">
+            <div class="smc-card d-flex align-items-start">
+                <img class="smc-card-img" src="{{card['image']}}" alt="{{card['title']}}">
+                <div class="d-flex flex-column bd-highlight mb-auto">
+                    <div class="bd-highlight">
+                        <a class="smc-card-title" href="{{card['onclick']}}">{{card['title']}}</a>
+                    </div>
+                    <div class="bd-highlight">
+                        <span class="smc-card-desc">{{ card['desc'] }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

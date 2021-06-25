@@ -1,0 +1,53 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Systematic Investment Plan (SIP) Calculators | {% endblock %}
+{% block pagetitle %}Systematic Investment Plan (SIP) Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Systematic Investment Plan (SIP)</span>
+    <div class="smc-spacer"></div>
+    <form method="POST" action="{{url_for('sipmodule.sip')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col">
+                <!-- get Low value -->
+                {{ form.low.label(for="low",class="smc-label")}}
+                {{ form.low(class="smc-input",id="low",placeholder="Low") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.low.errors %}
+                    {% for error in form.low.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.high.label(for="high",class="smc-label")}}
+                {{ form.high(class="smc-input",id="high",placeholder="High") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.high.errors %}
+                    {% for error in form.high.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="row">
+            <div class="col align-center">
+                {{ form.submit(class="smc-button-lite") }}
+            </div>
+        </div>
+    </form>
+    <div class="spacer"></div>
+    {% if result %}
+    <div class="display-result">
+        {{ result }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
