@@ -9,9 +9,9 @@ from stockreturn import stockreturnmodule
 from sip import sipmodule
 from positionsize import positionsizemodule
 from weightedaveragecost import wacmodule
-
 from pages import pagesmodule
 
+import os
 
 # App configuration
 app = Flask(__name__)
@@ -114,4 +114,5 @@ def not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True,port=port)
