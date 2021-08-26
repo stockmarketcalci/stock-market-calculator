@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}Stock Market Calculator</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+</head>
+
+<body>
+    <nav class="smc-page-navbar navbar">
+        <div class="d-flex flex-row bd-highlight">
+            <div class="bd-highlight">
+                <a href="/" class="smc-back-arrow navbar-brand"><i class="ri-arrow-left-line"></i></a>
+            </div>
+            <div class="pt-2 bd-highlight">
+                <span class="smc-page-title">{% block pagetitle %}{% endblock %}</span>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid smc-calculator-main-section">
+        <div class="row">
+            <div class="col-sm-9 smc-main-content">
+                {% block maincontent%}
+                {% endblock %}
+            </div>
+            <div class="col-sm-3 smc-sidebar">
+                <h4>Quick Links</h4>
+                <div class="smc-sidemenu">
+                    <ul>
+                        <li><a href="/pivot-point">Pivot Point</a></li>
+                        <li><a href="/fibonacci">Fibonacci</a></li>
+                        <li><a href="/holding-period-return">Holding Period Return</a></li>
+                        <li><a href="/stock-price-average">Stock Price Average</a></li>
+                        <li><a href="/stock-break-even-profit">Stock Break Even and Profit</a></li>
+                        <li><a href="/stock-return">Stock Return</a></li>
+                        <li><a href="/risk-reward-ratio">Risk Reward Ratio</a></li>
+                        <li><a href="/sip">Systematic Investment Plan (SIP)</a></li>
+                        <li><a href="/position-size">Position Size</a></li>
+                        <li><a href="/weighted-average-cost">Weighted Average Cost</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+</body>
+
+</html>

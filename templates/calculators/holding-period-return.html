@@ -1,0 +1,67 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Holding Period Return Calculators | {% endblock %}
+{% block pagetitle %}Holding Period Return Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Holding Period Return</span>
+    <div class="smc-spacer"></div>
+    <form method="POST" action="{{url_for('hprmodule.holdingperiodreturn')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col">
+                <!-- get Low value -->
+                {{ form.open.label(for="open",class="smc-label")}}
+                {{ form.open(class="smc-input",id="open",placeholder="Begning Value") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.open.errors %}
+                    {% for error in form.open.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.close.label(for="close",class="smc-label")}}
+                {{ form.close(class="smc-input",id="close",placeholder="Ending Value") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.close.errors %}
+                    {% for error in form.close.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.incomeReceived.label(for="incomeReceived",class="smc-label")}}
+                {{ form.incomeReceived(class="smc-input",id="incomeReceived",placeholder="Income Received") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.incomeReceived.errors %}
+                    {% for error in form.incomeReceived.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="row">
+            <div class="col align-center">
+                {{ form.submit(class="smc-button-lite") }}
+            </div>
+        </div>
+    </form>
+    <div class="spacer"></div>
+    {% if result %}
+    <div class="display-result">
+        <div class="smc-result-box">
+            <p class="smc-result-line">Holding Period Return : <span class="smc-result-span">{{ result['hpr'] }}</span>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

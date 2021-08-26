@@ -1,0 +1,106 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Stock Price Average Calculator | {% endblock %}
+{% block pagetitle %}Stock Price Average Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Stock Price Average</span>
+    <div class="smc-spacer"></div>
+
+    <form id="myForm" name="myForm">
+        <table id="dynamicField" width="100%">
+            <tr>
+                <td><input type="number" name="sharePurchased[]" placeholder="Share Purchased" class="smc-input"
+                        step="0.01" min="0" required>
+                </td>
+                <td><input type="number" name="purchasePrice[]" placeholder="Purchase Price" class="smc-input"
+                        step="0.01" min="0" required>
+                </td>
+                <td>
+                    <button id="addField" type="button" class="smc-button-dark">
+                        <i class="ri-add-circle-line"></i>
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <!-- <button type="submit" class="smc-button-dark">Calculate</button>-->
+        <button type="submit" id="calculateBtn" class="smc-button-lite">Calculate</button>
+    </form>
+
+    <div class="spacer"></div>
+
+    <div class="display-result">
+        <div id="myData"></div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        var i = 1;
+        $('#addField').click(function () {
+            i++;
+            var newRow =
+                `<tr id="row${i}" >
+                    <td><input type="number" name="sharePurchased[]" placeholder="Share Purchased" class="smc-input"
+                        step="0.01" min="0" required>
+                </td>
+                <td><input type="number" name="purchasePrice[]" placeholder="Purchase Price" class="smc-input"
+                        step="0.01" min="0" required>
+                </td>
+                    <td>
+                        <button type="button" name="removeField" id="${i}" class="smc-button-lite btn_remove">
+                            <i class="ri-close-circle-line"></i>
+                        </button>
+                    </td>
+                </tr>`;
+            $('#dynamicField').append(newRow);
+        });
+        $(document).on('click', '.btn_remove', function () {
+            var button_id = $(this).attr("id");
+            $('#row' + button_id).remove();
+        });
+
+        $('#myForm').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/sendData2',
+                data: $('#myForm').serialize(),
+                success: function (data) {
+                    console.log(data);
+                    appendData(data);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            });
+        });
+
+        function appendData(data) {
+            var res = "";
+            res += `
+            <table class="table table-striped table-dark table-borderless">
+            <tbody>
+                <tr style="border-left: 5px solid blue">
+                    <td>Stock Price Average</td>
+                    <td>${data['stockAveragePrice']}</td>
+                </tr>
+                <tr style="border-left: 5px solid green;">
+                    <td>Total Shares</td>
+                    <td>${data['totalShares']}</td>
+                </tr>
+                <tr style="border-left: 5px solid yellow;">
+                    <td>Total Stock Cost</td>
+                    <td>${data['totalStockCost']}</td>
+                </tr>
+            </tbody>
+        </table>
+            `;
+            $('#myData').html(res);
+        }
+    });
+
+</script>
+{% endblock %}

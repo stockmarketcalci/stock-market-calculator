@@ -1,0 +1,83 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Systematic Investment Plan (SIP) Calculators | {% endblock %}
+{% block pagetitle %}Systematic Investment Plan (SIP) Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Systematic Investment Plan (SIP)</span>
+    <div class="smc-spacer"></div>
+    <form method="POST" action="{{url_for('sipmodule.sip')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col">
+                <!-- get Low value -->
+                {{ form.initalDeposit.label(for="initalDeposit",class="smc-label")}}
+                {{ form.initalDeposit(class="smc-input",id="initalDeposit",placeholder="Inital Deposit") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.initalDeposit.errors %}
+                    {% for error in form.initalDeposit.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="col">
+                <!-- get High value -->
+                {{ form.expectedReturnRate.label(for="expectedReturnRate",class="smc-label")}}
+                {{ form.expectedReturnRate(class="smc-input",id="expectedReturnRate",placeholder="Expected Return Rate")
+                }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.expectedReturnRate.errors %}
+                    {% for error in form.expectedReturnRate.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.depositTerm.label(for="depositTerm",class="smc-label")}}
+                {{ form.depositTerm(class="smc-input",id="depositTerm",placeholder="Deposit Term") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.depositTerm.errors %}
+                    {% for error in form.depositTerm.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="row">
+            <div class="col align-center">
+                {{ form.submit(class="smc-button-lite") }}
+            </div>
+        </div>
+    </form>
+    <div class="spacer"></div>
+    {% if result %}
+    <div class="display-result">
+        <table class="table table-striped table-dark table-borderless">
+            <tbody>
+                <tr style="border-left: 5px solid blue">
+                    <td>Total Return</td>
+                    <td>{{result['totalReturn']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid green;">
+                    <td>Total Deposit</td>
+                    <td>{{result['totalDeposit']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid yellow;">
+                    <td>Maturity Amount</td>
+                    <td>{{result['maturity']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

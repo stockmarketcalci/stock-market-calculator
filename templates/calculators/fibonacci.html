@@ -1,0 +1,250 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Fibonacci Calculators | {% endblock %}
+{% block pagetitle %}Fibonacci Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Fibonacci Calculator</span>
+    <div class="smc-spacer"></div>
+    <form method="POST" action="{{url_for('fibonaccimodule.fibonacci')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col">
+                <!-- get Low value -->
+                {{ form.low.label(for="low",class="smc-label")}}
+                {{ form.low(class="smc-input",id="low",placeholder="Low") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.low.errors %}
+                    {% for error in form.low.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.high.label(for="high",class="smc-label")}}
+                {{ form.high(class="smc-input",id="high",placeholder="High") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.high.errors %}
+                    {% for error in form.high.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="row">
+            <div class="col align-center">
+                {{ form.submit(class="smc-button-lite") }}
+            </div>
+        </div>
+    </form>
+    <div class="spacer"></div>
+    {% if result %}
+    <div class="display-result">
+
+        <!-- Uptrend -->
+        <div class="row">
+            <span class="smc-col-title-2">Uptrend</span>
+
+            <!-- Uptrend Retracements -->
+            <div class="col">
+                <table class="table table-striped table-dark table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Retracements</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0%</td>
+                            <td>{{ result['ut-r-0'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>23.6%</td>
+                            <td>{{ result['ut-r-23.6'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>38.2%</td>
+                            <td>{{ result['ut-r-38.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>{{ result['ut-r-50'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>61.8%</td>
+                            <td>{{ result['ut-r-61.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>76.4%</td>
+                            <td>{{ result['ut-r-76.4'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>{{ result['ut-r-100'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>138.2%</td>
+                            <td>{{ result['ut-r-138.2'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Uptrend Extensions -->
+            <div class="col">
+                <table class="table table-striped table-dark table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Extensions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>261.8%</td>
+                            <td>{{ result['ut-e-261.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>200%</td>
+                            <td>{{ result['ut-e-200'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>161.8%</td>
+                            <td>{{ result['ut-e-161.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>138.2%</td>
+                            <td>{{ result['ut-e-138.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>{{ result['ut-e-100'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>61.8%</td>
+                            <td>{{ result['ut-e-61.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>{{ result['ut-e-50'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>38.2%</td>
+                            <td>{{ result['ut-e-38.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>23.6%</td>
+                            <td>{{ result['ut-e-23.6'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Downtrend -->
+        <div class="row">
+            <span class="smc-col-title-2">Downtrend</span>
+
+            <!-- Downtrend Retracements -->
+            <div class="col">
+                <table class="table table-striped table-dark table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Retracements</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>138.2%</td>
+                            <td>{{ result['dt-r-138.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>{{ result['dt-r-100'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>76.4%</td>
+                            <td>{{ result['dt-r-76.4'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>61.8%</td>
+                            <td>{{ result['dt-r-61.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>{{ result['dt-r-50'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>38.2%</td>
+                            <td>{{ result['dt-r-38.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>23.6%</td>
+                            <td>{{ result['dt-r-23.6'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>0%</td>
+                            <td>{{ result['dt-r-0'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Downtrend Extensions -->
+            <div class="col">
+                <table class="table table-striped table-dark table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Extensions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>23.6%</td>
+                            <td>{{ result['dt-e-23.6'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>38.2%</td>
+                            <td>{{ result['dt-e-38.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>{{ result['dt-e-50'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>61.8%</td>
+                            <td>{{ result['dt-e-61.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>{{ result['dt-e-100'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>138.2%</td>
+                            <td>{{ result['dt-e-138.2'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>161.8%</td>
+                            <td>{{ result['dt-e-161.8'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>200%</td>
+                            <td>{{ result['dt-e-200'] }}</td>
+                        </tr>
+                        <tr>
+                            <td>261.8%</td>
+                            <td>{{ result['dt-e-261.8'] }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "page-layout.html" %}
+{% block title %}Page Not Found {% endblock %}
+{% block pagetitle %}Page Not Found{% endblock %}
+{% block maincontent %}
+<div class="container smc-main-section">
+    <div class="container text-center">
+        <img src="{{ url_for('static',filename='images/404.svg') }}" class="smc-404-page"/>
+        <span class="smc-404-title">PAGE NOT FOUND</span>
+        <a class="smc-404-button" href="{{ url_for('home') }}"> Home</a>
+    </div>
+</div>
+{% endblock %}

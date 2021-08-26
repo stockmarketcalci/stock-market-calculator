@@ -1,0 +1,99 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Pivot Point Calculators | {% endblock %}
+{% block pagetitle %}Pivot Point Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Pivot Point Calculator</span>
+    <div class="smc-spacer"></div>
+    <form method="POST" action="{{url_for('pivotpointmodule.pivotpoint')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <div class="col">
+                <!-- get Low value -->
+                {{ form.low.label(for="low",class="smc-label")}}
+                {{ form.low(class="smc-input",id="low",placeholder="Low") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.low.errors %}
+                    {% for error in form.low.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.high.label(for="high",class="smc-label")}}
+                {{ form.high(class="smc-input",id="high",placeholder="High") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.high.errors %}
+                    {% for error in form.high.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.close.label(for="close",class="smc-label")}}
+                {{ form.close(class="smc-input",id="close",placeholder="Close") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.close.errors %}
+                    {% for error in form.close.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="row">
+            <div class="col align-center">
+                {{ form.submit(class="smc-button-lite") }}
+            </div>
+        </div>
+    </form>
+
+    <div class="spacer"></div>
+    {% if result %}
+    <div class="display-result">
+        <table class="table table-striped table-dark table-borderless">
+            <tbody>
+                <tr style="border-left: 5px solid violet;">
+                    <td>R3 - Resistance 3</td>
+                    <td>{{result['r3']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid indigo;">
+                    <td>R3 - Resistance 2</td>
+                    <td>{{result['r2']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid blue">
+                    <td>R3 - Resistance 1</td>
+                    <td>{{result['r1']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid green;">
+                    <td>PP - Pivot Point</td>
+                    <td>{{result['pp']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid yellow;">
+                    <td>S1 - Support 1</td>
+                    <td>{{result['s1']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid orange;">
+                    <td>S2 - Support 2</td>
+                    <td>{{result['s2']}}</td>
+                </tr>
+                <tr style="border-left: 5px solid red;">
+                    <td>S3 - Support 3</td>
+                    <td>{{result['s3']}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

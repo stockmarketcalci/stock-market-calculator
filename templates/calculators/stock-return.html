@@ -1,0 +1,187 @@
+{% extends "calculator-layout.html" %}
+{% block title %}Stock Return Calculator | {% endblock %}
+{% block pagetitle %}Stock Return Calculator{% endblock %}
+{% block maincontent %}
+<div class="smc-calculator-wrapper">
+    <span class="smc-calculator-page-title">Stock Return</span>
+    <div class="smc-spacer-3"></div>
+    <form method="POST" action="{{url_for('stockreturnmodule.stockreturn')}}" id="myForm">
+        {{ form.csrf_token }}
+        <div class="row">
+            <!-- Purchase Column-->
+            <div class="col">
+                <span class="smc-col-title">Purchase</span>
+                <div class="smc-spacer"></div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.purchasePrice.label(for="purchasePrice",class="smc-label")}}
+                    {{ form.purchasePrice(class="smc-input",id="purchasePrice",placeholder="Price") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.purchasePrice.errors %}
+                        {% for error in form.purchasePrice.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.purchaseFee.label(for="purchaseFee",class="smc-label")}}
+                    {{ form.purchaseFee(class="smc-input",id="purchaseFee",placeholder="Fee") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.purchaseFee.errors %}
+                        {% for error in form.purchaseFee.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.purchaseDate.label(for="purchaseDate",class="smc-label")}}
+                    {{ form.purchaseDate(class="smc-input",id="purchaseDate",placeholder="Date") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.purchaseDate.errors %}
+                        {% for error in form.purchaseDate.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sold Column -->
+            <div class="col">
+                <span class="smc-col-title">Sold</span>
+                <div class="smc-spacer"></div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.soldPrice.label(for="soldPrice",class="smc-label")}}
+                    {{ form.soldPrice(class="smc-input",id="soldPrice",placeholder="Price") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.soldPrice.errors %}
+                        {% for error in form.soldPrice.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.soldFee.label(for="soldFee",class="smc-label")}}
+                    {{ form.soldFee(class="smc-input",id="soldFee",placeholder="Fee") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.soldFee.errors %}
+                        {% for error in form.soldFee.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.soldDate.label(for="soldDate",class="smc-label")}}
+                    {{ form.soldDate(class="smc-input",id="soldDate",placeholder="Date") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.soldDate.errors %}
+                        {% for error in form.soldDate.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+
+        <div class="row">
+            <div class="">
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.sharesOwned.label(for="sharesOwned",class="smc-label")}}
+                    {{ form.sharesOwned(class="smc-input",id="sharesOwned",placeholder="Shares Owned") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.sharesOwned.errors %}
+                        {% for error in form.sharesOwned.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="container">
+                    <!-- get Low value -->
+                    {{ form.tax.label(for="tax",class="smc-label")}}
+                    {{ form.tax(class="smc-input",id="tax",placeholder="Tax (%)") }}
+                    <!-- For Error -->
+                    <div class="smc-validation-err">
+                        {% if form.tax.errors %}
+                        {% for error in form.tax.errors %}
+                        <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="smc-spacer"></div>
+        <div class="container">
+            {{ form.submit(class="smc-button-lite") }}
+        </div>
+    </form>
+    <div class="spacer"></div>
+    <div class="container">
+        {% if result %}
+        <div class="display-result">
+            <table class="table table-striped table-dark table-borderless">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="smc-col-title-2">Before Tax</th>
+                        <th class="smc-col-title-2">After Tax</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Gain or Loss : </th>
+                        <td>{{ result['btgainloss'] }}</td>
+                        <td>{{ result['atgainloss'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Return on Investment : </th>
+                        <td>{{ result['btroi'] }}</td>
+                        <td>{{ result['atroi'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Simple Annual ROI : </th>
+                        <td>{{ result['btsimpleanualroi'] }}</td>
+                        <td>{{ result['atsimpleanualroi'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Compound Annual ROI : </th>
+                        <td>{{ result['btcompoundannualroi'] }}</td>
+                        <td>{{ result['atcompoundannualroi'] }}</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <th>Investment Period : </th>
+                        <td colspan="2">{{ result['investmentperiod'] }}</td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <th>Capital Gain Tax Rate : </th>
+                        <td colspan="2">{{ result['capitalgaintaxrate'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
