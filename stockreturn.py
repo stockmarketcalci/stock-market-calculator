@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField
 from wtforms.validators import DataRequired, NumberRange
-from wtforms.fields.html5 import DateField
 
 stockreturnmodule = Blueprint('stockreturnmodule', __name__)
 
@@ -11,30 +10,43 @@ stockreturnmodule = Blueprint('stockreturnmodule', __name__)
 def stockreturn():
     form = StockReturnForm()
     if form.validate_on_submit():
-        result = calculateStockReturn()
+        purchaseFee = float(request.form.get('purchaseFee'))
+        soldFee = float(request.form.get('soldFee'))
+        sharesOwned = float(request.form.get('sharesOwned'))
+        purchasePrice = float(request.form.get('purchasePrice'))
+        soldPrice = float(request.form.get('soldPrice'))
+        tax = float(request.form.get('tax'))
+        year = int(request.form.get('year'))
+        result = calculateStockReturn(purchaseFee, soldFee, sharesOwned, purchasePrice, soldPrice, tax, year)
         return render_template('calculators/stock-return.html', form=form, result=result)
     return render_template('calculators/stock-return.html', form=form)
 
 
 # Stock Return Calculation Function
-def calculateStockReturn():
+def calculateStockReturn(purchaseFee, soldFee, sharesOwned, purchasePrice, soldPrice, tax, year):
     res = dict()
 
-    # Before Tax
-    res['btgainloss'] = '4800.0'
-    res['btroi'] = '23.88%'
-    res['btsimpleanualroi'] = '20.61%'
-    res['btcompoundannualroi'] = '20.3%'
+    totalFees = purchaseFee + soldFee
+    capitalInvested = sharesOwned * purchasePrice
+    profitPrice = soldPrice - purchasePrice
+    taxAmount = (capitalInvested * tax) / 100
 
-    # After Tax
-    res['atgainloss'] = '4080.0'
-    res['atroi'] = '20.3%'
-    res['atsimpleanualroi'] = '17.52%'
-    res['atcompoundannualroi'] = '17.29%'
+    roi = (profitPrice * sharesOwned * 100) / (capitalInvested + taxAmount)
 
-    res['investmentperiod'] = '1 Year 1 Months 28 Days'
-    res['capitalgaintaxrate'] = 'Long term - 15.0%'
+    simpleRoi = roi / year
 
+    gainLoss = profitPrice * sharesOwned - (totalFees + taxAmount)
+
+    compoundRoi = (((profitPrice * sharesOwned) - (year * (totalFees + taxAmount))) / (capitalInvested * year)) * 100
+
+    investmentPeriod = year
+
+    res['taxAmount'] = round(taxAmount, 4)
+    res['roi'] = round(roi, 4)
+    res['simpleRoi'] = round(simpleRoi, 4)
+    res['gainLoss'] = round(gainLoss, 4)
+    res['compoundRoi'] = round(compoundRoi, 4)
+    res['investmentPeriod'] = round(investmentPeriod, 4)
     return res
 
 
@@ -49,10 +61,8 @@ class StockReturnForm(FlaskForm):
                                                 NumberRange(min=0, message='Fee must be greater than 0')])
     soldFee = FloatField('Fee', validators=[DataRequired('Enter valid value', ),
                                             NumberRange(min=0, message='Fee must be greater than 0')])
-
-    purchaseDate = DateField('Date')
-    soldDate = DateField('Date')
-
+    year = FloatField('Year', validators=[DataRequired('Enter valid value', ),
+                                          NumberRange(min=0, message='year must be greater than 0')])
     sharesOwned = FloatField('Share Owned', validators=[DataRequired('Enter valid value', ),
                                                         NumberRange(min=0, message='Fee must be greater than 0')])
     tax = FloatField('Tax in (%)', validators=[DataRequired('Enter valid value', ),

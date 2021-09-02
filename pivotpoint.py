@@ -28,7 +28,7 @@ def calculatePivotPoint(high, low, close):
     r3 = high + 2 * (pp - low)
     s1 = 2 * pp - high
     s2 = pp - (high - low)
-    s3 = pp - 2 * (high - low)
+    s3 = low - 2 * (high - pp)
 
     res['pp'] = round(pp, 4)
     res['r1'] = round(r1, 4)

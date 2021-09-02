@@ -505,3 +505,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+table tr th, table tr td {
+    font-size:18px;
+}

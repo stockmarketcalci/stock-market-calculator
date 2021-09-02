@@ -1,3 +1,5 @@
+import locale
+
 from flask import Blueprint, render_template, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField
@@ -40,9 +42,10 @@ def calculateStockPriceAverage(sharePurchased, purchasePrice):
 
     # totalPurchasePrice = purchasePrice * sharePurchased
     # totalSharePurchased = sharePurchased
-    res['stockAveragePrice'] = round(totalPurchasePrice / totalSharePurchased, 4)
+
+    res['stockAveragePrice'] = locale.currency(round(totalPurchasePrice / totalSharePurchased, 4), grouping=True)
     res['totalShares'] = totalSharePurchased
-    res['totalStockCost'] = totalPurchasePrice
+    res['totalStockCost'] = locale.currency(totalPurchasePrice, grouping=True)
     return res
 
 

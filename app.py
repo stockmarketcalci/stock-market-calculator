@@ -1,3 +1,5 @@
+import locale
+
 from flask import Flask, render_template
 from fibonacci import fibonaccimodule
 from holdingperiodreturn import hprmodule
@@ -11,6 +13,7 @@ from systematicinvestmentplan import sipmodule
 from weightedaveragecost import wacmodule
 
 from pages import pagesmodule
+locale.setlocale(locale.LC_MONETARY, 'en_IN')
 
 
 # App configuration

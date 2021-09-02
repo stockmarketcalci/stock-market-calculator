@@ -10,23 +10,46 @@ positionsizemodule = Blueprint('positionsizemodule', __name__)
 def positionsize():
     form = PositionSizeForm()
     if form.validate_on_submit():
-        result = calculatePositionSize()
+        accountSize = float(request.form.get('accountSize'))
+        riskPerTrade = float(request.form.get('riskPerTrade'))
+        buyPrice = float(request.form.get('buyPrice'))
+        stopLoss = float(request.form.get('stopLoss'))
+        targetPrice = float(request.form.get('targetPrice'))
+        result = calculatePositionSize(accountSize, riskPerTrade, buyPrice, stopLoss, targetPrice)
         return render_template('calculators/position-size.html', form=form, result=result)
     return render_template('calculators/position-size.html', form=form)
 
 
 # Position Size Calculation Function
-def calculatePositionSize():
+def calculatePositionSize(accountSize, riskPerTrade, buyPrice, stopLoss, targetPrice):
     res = dict()
+
+    riskValue = (accountSize * riskPerTrade) / 100
+    temp = riskValue / (buyPrice - stopLoss)
+    positionSize = temp * buyPrice
+    profit = (targetPrice - buyPrice) * temp
+    loss = (buyPrice - stopLoss) * temp
+    riskRewardRatio = profit / loss
+
+    res['riskValue'] = round(riskValue, 4)
+    res['positionSize'] = round(positionSize, 4)
+    res['profit'] = round(profit, 4)
+    res['loss'] = round(loss, 4)
+    res['riskRewardRatio'] = round(riskRewardRatio, 4)
+
     return res
 
 
 # Position Size Calculation Form
 class PositionSizeForm(FlaskForm):
-    high = FloatField('High', validators=[DataRequired('Enter valid value', ),
-                                          NumberRange(min=0, message='High value must be greater than 0')])
-    low = FloatField('Low', validators=[DataRequired('Enter valid value'),
-                                        NumberRange(min=0, message='Low value must be greater than 0')])
-    close = FloatField('Close', validators=[DataRequired('Enter valid value'),
-                                            NumberRange(min=0, message='Close value must be greater than 0')])
+    accountSize = FloatField('Account Size', validators=[DataRequired('Enter valid value', ),
+                                          NumberRange(min=0, message='Account size must be greater than 0')])
+    riskPerTrade = FloatField('Risk Per Trade', validators=[DataRequired('Enter valid value'),
+                                        NumberRange(min=0, message='Risk per trade must be greater than 0')])
+    buyPrice = FloatField('Buy Price', validators=[DataRequired('Enter valid value'),
+                                            NumberRange(min=0, message='Buy price must be greater than 0')])
+    targetPrice = FloatField('Target Price', validators=[DataRequired('Enter valid value'),
+                                                 NumberRange(min=0, message='Target price must be greater than 0')])
+    stopLoss = FloatField('Stop Loss', validators=[DataRequired('Enter valid value'),
+                                               NumberRange(min=0, message='Stop Loss value must be greater than 0')])
     submit = SubmitField('Calculate')

@@ -10,12 +10,12 @@
         <div class="row">
             <div class="col">
                 <!-- get Low value -->
-                {{ form.open.label(for="low",class="smc-label")}}
-                {{ form.open(class="smc-input",id="low",placeholder="Low") }}
+                {{ form.currentPrice.label(for="currentPrice",class="smc-label")}}
+                {{ form.currentPrice(class="smc-input",id="currentPrice",placeholder="Current Price",step="0.10") }}
                 <!-- For Error -->
                 <div class="smc-validation-err">
-                    {% if form.open.errors %}
-                    {% for error in form.open.errors %}
+                    {% if form.currentPrice.errors %}
+                    {% for error in form.currentPrice.errors %}
                     <span><i class="ri-error-warning-line"></i> {{ error }}</span>
                     {% endfor %}
                     {% endif %}
@@ -24,18 +24,32 @@
             </div>
             <div class="col">
                 <!-- get High value -->
-                {{ form.close.label(for="high",class="smc-label")}}
-                {{ form.close(class="smc-input",id="high",placeholder="High") }}
+                {{ form.stopLoss.label(for="stopLoss",class="smc-label")}}
+                {{ form.stopLoss(class="smc-input",id="stopLoss",placeholder="Stop Loss",step="0.10") }}
                 <!-- For Error -->
                 <div class="smc-validation-err">
-                    {% if form.close.errors %}
-                    {% for error in form.close.errors %}
+                    {% if form.stopLoss.errors %}
+                    {% for error in form.stopLoss.errors %}
+                    <span><i class="ri-error-warning-line"></i> {{ error }}</span>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <!-- get High value -->
+                {{ form.target.label(for="target",class="smc-label")}}
+                {{ form.target(class="smc-input",id="target",placeholder="Target",step="0.10") }}
+                <!-- For Error -->
+                <div class="smc-validation-err">
+                    {% if form.target.errors %}
+                    {% for error in form.target.errors %}
                     <span><i class="ri-error-warning-line"></i> {{ error }}</span>
                     {% endfor %}
                     {% endif %}
                 </div>
             </div>
         </div>
+
         <div class="smc-spacer"></div>
         <div class="row">
             <div class="col align-center">
@@ -46,7 +60,9 @@
     <div class="spacer"></div>
     {% if result %}
     <div class="display-result">
-        {{ result }}
+        <div class="smc-result-box">
+            <p class="smc-result-line">Risk Reward Ratio : <span class="smc-result-span">{{ result['rrr'] }}</span>
+        </div>
     </div>
     {% endif %}
 </div>

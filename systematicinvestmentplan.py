@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField, IntegerField
 from wtforms.validators import DataRequired
+import locale
 
 sipmodule = Blueprint('sipmodule', __name__)
 
@@ -33,7 +34,7 @@ def calculateSIP(initalDeposit, expectedReturnRate, depositTerm):
 
     tr = amount - Total_deposit
 
-    res['totalReturn'] = round(tr, 4)
+    res['totalReturn'] = locale.currency(round(tr, 4), grouping=True)
     res['totalDeposit'] = round(Total_deposit, 4)
     res['maturity'] = round(amount, 4)
 
@@ -45,5 +46,5 @@ class SIPForm(FlaskForm):
     initalDeposit = FloatField('Inital Deposit (ID)', validators=[DataRequired()])
     # regularDeposit = FloatField('Regular Deposit (RD)',validators=[DataRequired()])
     expectedReturnRate = FloatField('Expected Return Rate', validators=[DataRequired()])
-    depositTerm = IntegerField('Deposit Term (in Months)', validators=[DataRequired()])
+    depositTerm = IntegerField('Deposit Term (in Years)', validators=[DataRequired()])
     submit = SubmitField('Calculate')
