@@ -22,7 +22,7 @@ def holdingperiodreturn():
 def calculateHoldingPeriodReturn(open, close, incomeReceived):
     res = dict()
     hpr = ((close + incomeReceived - open) / open) * 100
-    res['hpr'] = str(round(hpr, 4)) + '%'
+    res['hpr'] = str(round(hpr, 2)) + '%'
     return res
 
 

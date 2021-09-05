@@ -36,7 +36,7 @@ def calculateStockPriceAverage(sharePurchased, purchasePrice):
     totalSharePurchased = 0
     tPurchasePrice = 0
     for i in range(min(len(sharePurchased), len(purchasePrice))):
-        totalPurchasePrice += (int(sharePurchased[i]) * int(purchasePrice[i]))
+        totalPurchasePrice += (float(sharePurchased[i]) * float(purchasePrice[i]))
         totalSharePurchased += int(sharePurchased[i])
         # tPurchasePrice += int(purchasePrice[i])
 

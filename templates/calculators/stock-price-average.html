@@ -9,8 +9,20 @@
     <form id="myForm" name="myForm">
         <table id="dynamicField" width="100%">
             <tr>
-                <td><input type="number" name="sharePurchased[]" placeholder="Share Purchased" class="smc-input"
-                        step="0.01" min="0" required>
+                <td>
+                    <label class="smc-label">Share Purchased</label>
+                </td>
+                <td>
+                    <label class="smc-label">Purchase Price</label>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" name="sharePurchased[]" placeholder="Share Purchased" class="smc-input" min="0"
+                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                        required>
                 </td>
                 <td><input type="number" name="purchasePrice[]" placeholder="Purchase Price" class="smc-input"
                         step="0.01" min="0" required>
@@ -44,7 +56,7 @@
             var newRow =
                 `<tr id="row${i}" >
                     <td><input type="number" name="sharePurchased[]" placeholder="Share Purchased" class="smc-input"
-                        step="0.01" min="0" required>
+                        min="0" required onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57">
                 </td>
                 <td><input type="number" name="purchasePrice[]" placeholder="Purchase Price" class="smc-input"
                         step="0.01" min="0" required>

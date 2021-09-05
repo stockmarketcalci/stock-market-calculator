@@ -1,3 +1,5 @@
+import locale
+
 from flask import Blueprint, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField
@@ -15,8 +17,18 @@ def positionsize():
         buyPrice = float(request.form.get('buyPrice'))
         stopLoss = float(request.form.get('stopLoss'))
         targetPrice = float(request.form.get('targetPrice'))
-        result = calculatePositionSize(accountSize, riskPerTrade, buyPrice, stopLoss, targetPrice)
-        return render_template('calculators/position-size.html', form=form, result=result)
+
+        if int(buyPrice) >= int(targetPrice):
+            form.targetPrice.errors = ['Target Price must be greater than Current Price']
+            print('Target Price must be greater than Current Price')
+            return render_template('calculators/position-size.html', form=form)
+        elif int(buyPrice) <= int(stopLoss):
+            form.stopLoss.errors = ['Stop Loss must be lesser than Current Price']
+            print('Stop Loss must be lesser than Current Price')
+            return render_template('calculators/position-size.html', form=form)
+        else:
+            result = calculatePositionSize(accountSize, riskPerTrade, buyPrice, stopLoss, targetPrice)
+            return render_template('calculators/position-size.html', form=form, result=result)
     return render_template('calculators/position-size.html', form=form)
 
 
@@ -31,11 +43,11 @@ def calculatePositionSize(accountSize, riskPerTrade, buyPrice, stopLoss, targetP
     loss = (buyPrice - stopLoss) * temp
     riskRewardRatio = profit / loss
 
-    res['riskValue'] = round(riskValue, 4)
-    res['positionSize'] = round(positionSize, 4)
-    res['profit'] = round(profit, 4)
-    res['loss'] = round(loss, 4)
-    res['riskRewardRatio'] = round(riskRewardRatio, 4)
+    res['riskValue'] = locale.currency(round(riskValue, 4), grouping=True)
+    res['positionSize'] = locale.currency(round(positionSize, 4), grouping=True)
+    res['profit'] = locale.currency(round(profit, 4), grouping=True)
+    res['loss'] = locale.currency(round(loss, 4), grouping=True)
+    res['riskRewardRatio'] = round(riskRewardRatio, 2)
 
     return res
 

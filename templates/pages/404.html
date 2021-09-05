@@ -2,9 +2,14 @@
 {% block title %}Page Not Found {% endblock %}
 {% block pagetitle %}Page Not Found{% endblock %}
 {% block maincontent %}
+<style>
+    #helpContainer {
+        background-color: blue;
+    }
+</style>
 <div class="container smc-main-section">
     <div class="container text-center">
-        <img src="{{ url_for('static',filename='images/404.svg') }}" class="smc-404-page"/>
+        <img src="{{ url_for('static',filename='images/404.svg') }}" class="smc-404-page" />
         <span class="smc-404-title">PAGE NOT FOUND</span>
         <a class="smc-404-button" href="{{ url_for('home') }}"> Home</a>
     </div>

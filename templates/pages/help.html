@@ -1,8 +1,200 @@
 {% extends "page-layout.html" %}
-{% block title %}Help {% endblock %}
+{% block title %}Help | {% endblock %}
 {% block pagetitle %}Help{% endblock %}
 {% block maincontent %}
+
 <div class="container smc-main-section">
-    <h3>Help</h3>
+    <!-- <h3>Help</h3>
+    <br> -->
+    <div class="accordion" id="helpContainer">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1"
+                    aria-expanded="true" aria-controls="collapse1">
+                    Pivot Point
+                </button>
+            </h2>
+            <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Pivot point calculator is used to calculate
+                        <code
+                            style="color: var(--primary-color);">Pivot Point, Support1, Resistance1, Support2, Resistance2, Support3, Resistance3</code>
+                        with input parameters <code
+                            style="color: var(--primary-color);">Low, High and Close Price</code>
+                        of particular stock.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading2"></h2>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Fibonacci
+            </button>
+            </h2>
+            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Fibonacci Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Uptrend Retracements and Extensions</code> along with
+                        <code style="color: var(--primary-color);">Downtrend Retracements and Extensions</code>
+                        with input parameters <code style="color: var(--primary-color);">Low and High</code> of
+                        particular stock.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                    Holding Period Return
+                </button>
+            </h2>
+            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Holding Period Return Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Holding Period Return</code> in percentage with input
+                        parameters
+                        <code style="color: var(--primary-color);">Beginning Value, Ending Value
+                        and Income Received.</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading4">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                    Stock Price Average
+                </button>
+            </h2>
+            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Stock Price Average Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Stock Average Price, Total Number of Shares, Total Stock Cost</code>
+                        with input parameters
+                        <code style="color: var(--primary-color);">Share Purchased and Purchase Price.</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading5">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                    Stock Break Even and Profit
+                </button>
+            </h2>
+            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Stock Break Even and Profit Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Break Even Price, Total Sale Value, Total Cost, Total Profit,
+                        Shares Sold, Shares Own
+                        and Total Return</code> with input parameters <code style="color: var(--primary-color);">Stock Purchase Price, Number of Shares, Fees and Stock Sale
+                        Price, Number of Shares,
+                        Fees.</code></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading6">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                    Stock Return
+                </button>
+            </h2>
+            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="heading6"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Stock Return Calculator is used to calculate <code style="color: var(--primary-color);">Gain or Loss, Return On Investment, Simple Annual
+                        ROI, Compound Annual
+                        ROI, Investment Period,
+                        Capital Gain Tax Rate - Before and After Tax</code> with input parameters <code
+                            style="color: var(--primary-color);">Purchase Price, Sold
+                    Price, Fee
+                    for Purchase and Sold,
+                    Number of Year of Purchase and Sold, Shares Owned and Tax in Percentage.</code></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading7">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                    Risk Reward Ratio
+                </button>
+            </h2>
+            <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="heading7"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Risk Reward Ratio Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Risk Reward Ratio</code> with input parameters <code
+                            style="color: var(--primary-color);">Current Price, Stop
+                        Loss, Target.</code></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading8">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                    Syatematic Investment Plan (SIP)
+                </button>
+            </h2>
+            <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="heading8"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Syatematic Investment Plan (SIP) Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Maturity Amount, Total Deposit and Total Return</code>
+                        with input
+                        parameters <code style="color: var(--primary-color);">Deposit, Expected
+                        Return Rate and Deposit Term.</code></p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading9">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                    Position Size
+                </button>
+            </h2>
+            <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="heading9"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Position Size Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Position Size, No of Shares, Profit and Loss</code>
+                        with input
+                        parameters <code style="color: var(--primary-color);">Account Size, Risk
+                        per Trade, Buy Price, Target Price and Stop Loss.</code>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading10">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                    Weighted Average Cost
+                </button>
+            </h2>
+            <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10"
+                data-bs-parent="#helpContainer">
+                <div class="accordion-body">
+                    <p>Weighted Average Cost Calculator is used to calculate <code
+                            style="color: var(--primary-color);">Weighted Average Cost</code> of capital with input
+                        parameters <code style="color: var(--primary-color);">cost of
+                        Equity in Percentage,
+                        Total Equity and Cost of Debt in Percentage, Total Debt and Tax Rate.</code></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

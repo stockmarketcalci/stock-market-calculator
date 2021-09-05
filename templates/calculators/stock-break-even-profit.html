@@ -13,9 +13,22 @@
         <!-- Stock Purchase -->
         <table id="dynamicField" width="100%">
             <tr>
+                <td>
+                    <label class="smc-label">Price</label>
+                </td>
+                <td>
+                    <label class="smc-label">Share</label>
+                </td>
+                <td>
+                    <label class="smc-label">Fee</label>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
                 <td><input type="number" name="price[]" placeholder="Price" class="smc-input" step="0.01" min="0"
                         required></td>
-                <td><input type="number" name="share[]" placeholder="Share" class="smc-input" step="0.01" min="0"
+                <td><input type="number" name="share[]" placeholder="Share" class="smc-input" min="0"
+                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                         required></td>
                 <td><input type="number" name="fee[]" placeholder="Fee" class="smc-input" step="0.01" min="0" required>
                 </td>
@@ -35,10 +48,23 @@
         <!-- Stock Purchase -->
         <table width="100%">
             <tr>
+                <td>
+                    <label class="smc-label">Price</label>
+                </td>
+                <td>
+                    <label class="smc-label">Share</label>
+                </td>
+                <td>
+                    <label class="smc-label">Fee</label>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
                 <td><input type="number" name="sPrice" placeholder="Price" class="smc-input" step="0.01" min="0"
                         required></td>
-                <td><input type="number" name="sShare" placeholder="Share" class="smc-input" step="0.01" min="0"
-                        required></td>
+                <td><input type="number" name="sShare" placeholder="Share" class="smc-input"
+                        onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                        min="0" required></td>
                 <td><input type="number" name="sFee" placeholder="Fee" class="smc-input" step="0.01" min="0" required>
                 </td>
                 <td>
@@ -79,7 +105,8 @@
                         <input type="number" name="price[]" placeholder="Price" class="smc-input" step="0.01" min="0" required/>
                     </td>
                     <td>
-                        <input type="number" name="share[]" placeholder="Share" class="smc-input" step="0.01" min="0" required/>
+                        <input type="number" name="share[]" placeholder="Share" class="smc-input" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                         min="0" required/>
                     </td>
                     <td>
                         <input type="number" name="fee[]" placeholder="Fee" class="smc-input" step="0.01" min="0" required/>
@@ -132,7 +159,7 @@
                 </tr>
                 <tr style="border-left: 5px solid blue">
                     <td>Total Profit</td>
-                    <td>${data['totalProfit']}</td>
+                    <td>₹ ${data['totalProfit']}</td>
                 </tr>
                 <tr style="border-left: 5px solid green;">
                     <td>Shares Sold</td>
@@ -144,7 +171,7 @@
                 </tr>
                 <tr style="border-left: 5px solid yellow;">
                     <td>Return (%)</td>
-                    <td>${data['returnPer']}</td>
+                    <td>${data['returnPer']} %</td>
                 </tr>
             </tbody>
         </table>

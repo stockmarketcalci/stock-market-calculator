@@ -27,11 +27,11 @@ def calculateWeightedAverageCost(weight, value):
     totalWAC = 0
     totalWeight = 0
     for i in range(min(len(weight), len(value))):
-        totalWeight = totalWeight + int(weight[i])
+        totalWeight = totalWeight + float(weight[i])
         print(weight[i])
         print(value[i])
-        totalWAC = totalWAC + (int(weight[i]) * int(value[i]))
+        totalWAC = totalWAC + (float(weight[i]) * float(value[i]))
 
-    res['weightedAverageCost'] = totalWAC / totalWeight
-    res['totalWeight'] = totalWeight
+    res['weightedAverageCost'] = round(totalWAC / totalWeight,2)
+    res['totalWeight'] = round(totalWeight,2)
     return res

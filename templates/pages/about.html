@@ -3,6 +3,25 @@
 {% block pagetitle %}About Us{% endblock %}
 {% block maincontent %}
 <div class="container smc-main-section">
-    <h3>About Us</h3>
+    <!-- <h3>About Us</h3>
+    <br> -->
+    <center>
+        <img src="{{ url_for('static',filename='images/logo.svg') }}" alt="Stock Market Calculator"
+            style="height: 100px;margin: 20px;"><br>
+        <h3 style="letter-spacing: 2px;color:var(--primary-color);font-weight: 500;">STOCK MARKET CALCULATOR</h3><br>
+    </center>
+    <div>
+        <p style="color:grey;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Stock Market Calculator is an
+            application software used to
+            perform various
+            calculations related to share market it includes following
+            features
+            like Pivot Point Calculator, Fibonacci Calculator, Holding Period Return Calculator, Stock Price Average
+            Calculator,
+            Stock Break Even and Profit, Stock Return Calculator, Risk-Reward Calculator, SIP Calculator, Position Size,
+            Profit/Loss
+            Calculator.</p>
+    </div>
+    <br>
 </div>
 {% endblock %}

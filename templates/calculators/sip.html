@@ -40,7 +40,7 @@
             <div class="col">
                 <!-- get High value -->
                 {{ form.depositTerm.label(for="depositTerm",class="smc-label")}}
-                {{ form.depositTerm(class="smc-input",id="depositTerm",placeholder="Deposit Term") }}
+                {{ form.depositTerm(min=0,class="smc-input",id="depositTerm",placeholder="Deposit Term") }}
                 <!-- For Error -->
                 <div class="smc-validation-err">
                     {% if form.depositTerm.errors %}

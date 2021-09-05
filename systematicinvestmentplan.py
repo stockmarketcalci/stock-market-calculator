@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, NumberRange
 import locale
 
 sipmodule = Blueprint('sipmodule', __name__)
@@ -35,16 +35,16 @@ def calculateSIP(initalDeposit, expectedReturnRate, depositTerm):
     tr = amount - Total_deposit
 
     res['totalReturn'] = locale.currency(round(tr, 4), grouping=True)
-    res['totalDeposit'] = round(Total_deposit, 4)
-    res['maturity'] = round(amount, 4)
+    res['totalDeposit'] = locale.currency(round(Total_deposit, 4), grouping=True)
+    res['maturity'] = locale.currency(round(amount, 4), grouping=True)
 
     return res
 
 
 # SIP Calculation Form
 class SIPForm(FlaskForm):
-    initalDeposit = FloatField('Inital Deposit (ID)', validators=[DataRequired()])
+    initalDeposit = FloatField('Inital Deposit (ID)', validators=[DataRequired('Initial Deposit is required'),NumberRange(min=0,message='Invalid Initial Deposit')])
     # regularDeposit = FloatField('Regular Deposit (RD)',validators=[DataRequired()])
-    expectedReturnRate = FloatField('Expected Return Rate', validators=[DataRequired()])
-    depositTerm = IntegerField('Deposit Term (in Years)', validators=[DataRequired()])
+    expectedReturnRate = FloatField('Expected Return Rate', validators=[DataRequired('Expected Return Rate is required'),NumberRange(min=0,message='Expected Return Rate')])
+    depositTerm = IntegerField('Deposit Term (in Years)', validators=[DataRequired('Enter valid Deposit Term'), NumberRange(min=0,max=100,message='Invalid Deposit Term')])
     submit = SubmitField('Calculate')

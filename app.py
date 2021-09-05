@@ -41,19 +41,19 @@ def home():
 cardList1 = [
     {
         "title": "Pivot Point Calculator",
-        "desc": "This is short description of pivot point",
+        "desc": "A technical analysis indicator used to determine the overall trend of the market over different time frames.",
         "image": "/static/icons/pivot-point-icon.png",
         "onclick": "/pivot-point"
     },
     {
         "title": "Fibonacci Calculator",
-        "desc": "This is short description of fibonacci",
+        "desc": "A series of numbers, where a number is found by adding up two numbers before it.",
         "image": "/static/icons/fibonacci-icon.png",
         "onclick": "/fibonacci"
     },
     {
         "title": "Holding Period Return Calculator",
-        "desc": "This is short description of holding period return",
+        "desc": "The amount of time the investment is held by an investor.",
         "image": "/static/icons/holding-period-return-icon.png",
         "onclick": "/holding-period-return"
     },
@@ -62,19 +62,19 @@ cardList1 = [
 cardList2 = [
     {
         "title": "Stock Price Average Calculator",
-        "desc": "This is short description of stock price average",
+        "desc": "Is calculated by dividing the amount invested with shares purchased.",
         "image": "/static/icons/stock-price-average-icon.png",
         "onclick": "/stock-price-average"
     },
     {
         "title": "Stock Break Even and Profit Calculator",
-        "desc": "This is short description of stock break even and profit",
+        "desc": "Is the amount of money, or change in value, for which an asset must be sold to cover the costs of acquiring and owning it.",
         "image": "/static/icons/stock-break-even-profit-icon.png",
         "onclick": "/stock-break-even-profit"
     },
     {
         "title": "Stock Return Calculator",
-        "desc": "This is short description of stock return",
+        "desc": "The change in price of an asset, investment, or project over time.",
         "image": "/static/icons/stock-return-icon.png",
         "onclick": "/stock-return"
     }
@@ -83,19 +83,19 @@ cardList2 = [
 cardList3 = [
     {
         "title": "Risk Reward Ratio Calculator",
-        "desc": "This is short description of risk reward ratio",
+        "desc": "Measures the difference between a trade entry point to a stop-loss and a sell or take-profit order.",
         "image": "/static/icons/risk-reward-icon.png",
         "onclick": "/risk-reward-ratio"
     },
     {
         "title": "SIP Calculator",
-        "desc": "This is short description of systematic investment plan",
+        "desc": "A plan in which investors make regular, equal payments into a mutual fund, trading account.",
         "image": "/static/icons/sip-icon.png",
         "onclick": "/sip"
     },
     {
         "title": "Position Size",
-        "desc": "This is short description of position size",
+        "desc": "The size of a position within a particular portfolio.",
         "image": "/static/icons/position-size-icon.png",
         "onclick": "/position-size"
     }
@@ -104,7 +104,7 @@ cardList3 = [
 cardList4 = [
     {
         "title": "Weighted Average Cost Calculator",
-        "desc": "This is short description of weighted average cost",
+        "desc": "For track the cost basis of shares bought at varying times.",
         "image": "/static/icons/profit-loss-icon.png",
         "onclick": "/weighted-average-cost"
     }

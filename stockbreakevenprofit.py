@@ -1,3 +1,5 @@
+import locale
+
 from flask import Blueprint, render_template, request, jsonify
 
 sbepmodule = Blueprint('sbepmodule', __name__)
@@ -29,15 +31,17 @@ def calculateStockBreakEvenProfit(price, share, fee, sPrice, sShare, sFee):
     totalPrice = 0
     totalShares = 0
     for i in range(len(price)):
-        totalPrice = totalPrice + (int(price[i]) * int(share[i]) + int(fee[i]))
+        totalPrice = totalPrice + (float(price[i]) * int(share[i]) + float(fee[i]))
         totalShares = totalShares + int(share[i])
 
-    res['breakEvenPrice'] = round(totalPrice / totalShares, 4)
-    res['totalSaleValue'] = int(sPrice) * int(sShare) - int(sFee)
-    res['totalCost'] = totalPrice
+    res['breakEvenPrice'] = locale.currency(round(totalPrice / totalShares, 2), grouping=True)
+    tSaleValue = float(sPrice) * int(sShare) - float(sFee)
+    res['totalSaleValue'] = locale.currency(tSaleValue, grouping=True)
+    res['totalCost'] = locale.currency(totalPrice, grouping=True)
     res['sharesOwn'] = totalShares - int(sShare)
-    res['totalProfit'] = res['totalSaleValue'] - totalPrice
-    res['returnPer'] = round((res['totalProfit'] / res['totalCost']) * 100,2)
+    tProfit = tSaleValue - totalPrice
+    res['totalProfit'] = tProfit
+    res['returnPer'] = round((tProfit / totalPrice) * 100, 2)
     res['totalShares'] = totalShares
     res['sharesSold'] = sShare
 

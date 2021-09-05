@@ -30,13 +30,13 @@ def calculatePivotPoint(high, low, close):
     s2 = pp - (high - low)
     s3 = low - 2 * (high - pp)
 
-    res['pp'] = round(pp, 4)
-    res['r1'] = round(r1, 4)
-    res['r2'] = round(r2, 4)
-    res['r3'] = round(r3, 4)
-    res['s1'] = round(s1, 4)
-    res['s2'] = round(s2, 4)
-    res['s3'] = round(s3, 4)
+    res['pp'] = round(pp, 2)
+    res['r1'] = round(r1, 2)
+    res['r2'] = round(r2, 2)
+    res['r3'] = round(r3, 2)
+    res['s1'] = round(s1, 2)
+    res['s2'] = round(s2, 2)
+    res['s3'] = round(s3, 2)
 
     return res
 

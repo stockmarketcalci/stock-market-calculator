@@ -293,13 +293,13 @@ a:hover, button:hover {
     margin-bottom: 15px;
 }
 .smc-result-span {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     color: black;
 }
 .smc-result-box {
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     text-align: center;
     background-color: var(--primary-color);
     color: black;
@@ -426,8 +426,28 @@ input[type="color"]:focus,
   box-shadow: none;
   outline: 0 none;
 }
-
-
+.smc-card-2 {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #171717;
+     transition: 0.3s;
+}
+.smc-card-2:hover {
+    color: #000;
+    background-color: var(--primary-color);
+}
+.smc-card-2-icon {
+    font-size: 3em;
+    margin-bottom: 40px;
+}
+.smc-card-2-link {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #fff;
+}
+.smc-card-2-link:hover {
+    color: black;
+}
 /***** LIGHT/DARK MODE CHECKBOX ****/
 /* The switch - the box around the slider */
 .switch {
@@ -507,4 +527,82 @@ input:checked + .slider:before {
 
 table tr th, table tr td {
     font-size:18px;
+}
+/* .accordion-button:not(.collapsed) {
+outline: none;
+border:0;
+    background-color: #171717;
+    color: white;
+    box-shadow: inset 0 -1px 0 #000;
+}
+.accordion-button {
+    box-shadow: inset 0 -1px 0 #000;
+    border: 0;
+    outline: none;
+    background-color: #171717;
+    color: white;
+}
+.accordion {
+    border: 0px;
+    outline: none;
+    box-shadow: inset 0 -1px 0 #000;
+}
+.accordion-item {
+    background-color: var(--primary-color);
+    box-shadow: inset 0 -1px 0 #000;
+} */
+
+
+.accordion-item {
+    background-color:var(--header-bg);
+    border: none;
+    
+}
+
+.accordion-button {
+    background-color: #171717;
+  color:white;
+    box-shadow: none;
+    border:none;
+    padding: 20px 50px;
+    margin: 4px 0;
+}
+.accordion-button:not(.collapsed)
+{
+    border-bottom: 3px solid var(--primary-color);
+    color: #fff;
+    background-color: #171717; 
+} 
+
+.accordion-button:focus {
+    z-index: 3;
+    border-color: none;
+    outline: 0;
+    box-shadow: none;
+}
+
+.accordion-button:not(.collapsed)::after {
+        background-image: url("http://127.0.0.1:5000/static/icons/on.png");
+    /* background-image: url("https://nsm09.casimages.com/img/2021/06/17//21061710471725998217466601.png"); */
+    transform: rotate(-180deg);
+}
+
+.accordion-button::after {
+    flex-shrink: 0;
+    width:  1.25rem;
+    height:  1.25rem;
+    margin-left: auto;
+    content: "";
+    /* background-size: cover; */
+    background-image: url("http://127.0.0.1:5000/static/icons/off.png");
+    /* background-image: url("https://nsm09.casimages.com/img/2021/06/17//21061710471725998217466600.png"); */
+    background-repeat: no-repeat;
+    background-size: 1.25rem;
+    transition: transform .2s ease-in-out;
+  
+}
+.a-icon {
+    height: 20px;
+    margin-left:-20px;
+    margin-right: 20px;
 }
