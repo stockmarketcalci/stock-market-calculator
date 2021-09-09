@@ -13,8 +13,13 @@ def pivotpoint():
         high = float(request.form.get('high'))
         low = float(request.form.get('low'))
         close = float(request.form.get('close'))
-        result = calculatePivotPoint(high, low, close)
-        return render_template('calculators/pivot-point.html', form=form, result=result)
+
+        if low > high:
+            form.high.errors = ['High must be greater than Low']
+            return render_template('calculators/pivot-point.html', form=form)
+        else:
+            result = calculatePivotPoint(high, low, close)
+            return render_template('calculators/pivot-point.html', form=form, result=result)
     return render_template('calculators/pivot-point.html', form=form)
 
 

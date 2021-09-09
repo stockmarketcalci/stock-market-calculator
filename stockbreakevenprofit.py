@@ -40,7 +40,7 @@ def calculateStockBreakEvenProfit(price, share, fee, sPrice, sShare, sFee):
     res['totalCost'] = locale.currency(totalPrice, grouping=True)
     res['sharesOwn'] = totalShares - int(sShare)
     tProfit = tSaleValue - totalPrice
-    res['totalProfit'] = tProfit
+    res['totalProfit'] = round(tProfit, 2)
     res['returnPer'] = round((tProfit / totalPrice) * 100, 2)
     res['totalShares'] = totalShares
     res['sharesSold'] = sShare

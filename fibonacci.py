@@ -12,8 +12,12 @@ def fibonacci():
     if form.validate_on_submit():
         high = float(request.form.get('high'))
         low = float(request.form.get('low'))
-        result = calculateFibonacci(high, low)
-        return render_template('calculators/fibonacci.html', form=form, result=result)
+        if low > high:
+            form.high.errors = ['High must be greater than Low']
+            return render_template('calculators/fibonacci.html', form=form)
+        else:
+            result = calculateFibonacci(high, low)
+            return render_template('calculators/fibonacci.html', form=form, result=result)
     return render_template('calculators/fibonacci.html', form=form)
 
 

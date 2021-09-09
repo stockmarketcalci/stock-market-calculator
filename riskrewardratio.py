@@ -32,10 +32,7 @@ def calculateRiskRewardRatio(currentPrice, stopLoss, target):
     res = dict()
     risk = (float(currentPrice) - float(stopLoss)) / float(currentPrice)
     reward = (float(target) - float(currentPrice)) / float(currentPrice)
-    if risk is 0:
-        risk = 1.0
-    if reward is 0:
-        reward = 1.0
+
     rrr = float(risk) / float(reward)
     res['rrr'] = str(round(rrr, 2)) + '%'
     return res

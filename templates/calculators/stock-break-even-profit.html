@@ -27,7 +27,7 @@
             <tr>
                 <td><input type="number" name="price[]" placeholder="Price" class="smc-input" step="0.01" min="0"
                         required></td>
-                <td><input type="number" name="share[]" placeholder="Share" class="smc-input" min="0"
+                <td><input id="pshare" type="number" name="share[]" placeholder="Share" class="smc-input" min="0"
                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                         required></td>
                 <td><input type="number" name="fee[]" placeholder="Fee" class="smc-input" step="0.01" min="0" required>
@@ -62,7 +62,7 @@
             <tr>
                 <td><input type="number" name="sPrice" placeholder="Price" class="smc-input" step="0.01" min="0"
                         required></td>
-                <td><input type="number" name="sShare" placeholder="Share" class="smc-input"
+                <td><input id="sshare" type="number" name="sShare" placeholder="Share" class="smc-input"
                         onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                         min="0" required></td>
                 <td><input type="number" name="sFee" placeholder="Fee" class="smc-input" step="0.01" min="0" required>
@@ -87,7 +87,6 @@
 
 
     <div class="display-result">
-
         <div id="myData"></div>
     </div>
 
@@ -105,7 +104,7 @@
                         <input type="number" name="price[]" placeholder="Price" class="smc-input" step="0.01" min="0" required/>
                     </td>
                     <td>
-                        <input type="number" name="share[]" placeholder="Share" class="smc-input" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+                        <input id="pshare" type="number" name="share[]" placeholder="Share" class="smc-input" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
                          min="0" required/>
                     </td>
                     <td>
@@ -125,6 +124,8 @@
         });
 
         $('#myForm').on('submit', function (e) {
+
+
             e.preventDefault();
             $.ajax({
                 type: 'POST',

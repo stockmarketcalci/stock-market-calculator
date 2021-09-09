@@ -45,6 +45,6 @@ def calculateSIP(initalDeposit, expectedReturnRate, depositTerm):
 class SIPForm(FlaskForm):
     initalDeposit = FloatField('Inital Deposit (ID)', validators=[DataRequired('Initial Deposit is required'),NumberRange(min=0,message='Invalid Initial Deposit')])
     # regularDeposit = FloatField('Regular Deposit (RD)',validators=[DataRequired()])
-    expectedReturnRate = FloatField('Expected Return Rate', validators=[DataRequired('Expected Return Rate is required'),NumberRange(min=0,message='Expected Return Rate')])
+    expectedReturnRate = FloatField('Expected Return Rate', validators=[DataRequired('Expected Return Rate is required'),NumberRange(min=0,message='Invalid Expected Return Rate')])
     depositTerm = IntegerField('Deposit Term (in Years)', validators=[DataRequired('Enter valid Deposit Term'), NumberRange(min=0,max=100,message='Invalid Deposit Term')])
     submit = SubmitField('Calculate')
