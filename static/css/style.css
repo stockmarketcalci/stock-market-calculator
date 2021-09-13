@@ -582,7 +582,7 @@ border:0;
 }
 
 .accordion-button:not(.collapsed)::after {
-        background-image: url("http://127.0.0.1:5000/static/icons/on.png");
+        background-image: url("/static/icons/on.png");
     /* background-image: url("https://nsm09.casimages.com/img/2021/06/17//21061710471725998217466601.png"); */
     transform: rotate(-180deg);
 }
@@ -594,7 +594,7 @@ border:0;
     margin-left: auto;
     content: "";
     /* background-size: cover; */
-    background-image: url("http://127.0.0.1:5000/static/icons/off.png");
+    background-image: url("/static/icons/off.png");
     /* background-image: url("https://nsm09.casimages.com/img/2021/06/17//21061710471725998217466600.png"); */
     background-repeat: no-repeat;
     background-size: 1.25rem;

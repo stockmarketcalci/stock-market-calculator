@@ -19,11 +19,11 @@ def positionsize():
         targetPrice = float(request.form.get('targetPrice'))
 
         if int(buyPrice) >= int(targetPrice):
-            form.targetPrice.errors = ['Target Price must be greater than Current Price']
+            form.targetPrice.errors = ['Target Price must be greater than Buy Price']
             print('Target Price must be greater than Current Price')
             return render_template('calculators/position-size.html', form=form)
         elif int(buyPrice) <= int(stopLoss):
-            form.stopLoss.errors = ['Stop Loss must be lesser than Current Price']
+            form.stopLoss.errors = ['Stop Loss must be lesser than Buy Price']
             print('Stop Loss must be lesser than Current Price')
             return render_template('calculators/position-size.html', form=form)
         else:

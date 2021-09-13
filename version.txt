@@ -1,1 +1,3 @@
-Latest Final Version 3.0 Updated by @DigitalManjunath
+Final Release Version by @DigitalManjunath
+
+All Major bugs are fixed
